@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Wechat\WechatServiceProvider::class,// 启用自定义缓存 的 WechatServiceProvider
     ],
 
     /*

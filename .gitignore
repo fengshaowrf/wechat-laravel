@@ -1,6 +1,7 @@
 /node_modules
 /public/storage
 /vendor
+/public/**
 /.idea
 Homestead.json
 Homestead.yaml

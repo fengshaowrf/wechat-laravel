@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('login', function () {
+    $data = array(
+        'special' => 0,
+        'title' => '登录',
+        'desc' => '手机验证码登录'
+    );
+    return view('login.index',compact('data'));
+});
