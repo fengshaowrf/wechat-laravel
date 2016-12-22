@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//微信接口
+Route::any('/wechat', 'WechatController@index');
+
 Route::get('login', function () {
     $data = array(
         'special' => 0,

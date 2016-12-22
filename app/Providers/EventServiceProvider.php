@@ -13,8 +13,13 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\Wechat\TextEvent' => [
+            'App\Listeners\Wechat\DefaultListener',
+            'App\Listeners\Wechat\HomeListener',
+            'App\Listeners\Wechat\CanOpen',
+        ], 'App\Events\Wechat\ActionEvent' => [
+            'App\Listeners\Wechat\ScanSubListener',
+            'App\Listeners\Wechat\SubscribeListener',
         ],
     ];
 

@@ -16,6 +16,9 @@ return [
     'cache_class' => 'App\Wechat\WechatCache', // 使用自定义缓存类
 
     'not_union_oauth' => env('NOT_UNION_WECHAT_OAUTH', true), //不通过统一域名授权
+
+    'forward_url'   => env('WECHAT_FORWARD_URL','debug'), //微信消息融合第三方URL
+    'forward_token' => env('WECHAT_FORWARD_TOKEN','debug'), //微信消息融合第三方TOKEN
     /*
      * 账号基本信息，请从微信公众平台/开放平台获取
      */
