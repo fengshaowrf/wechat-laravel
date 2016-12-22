@@ -1,0 +1,99 @@
+@import "_p2rnew";
+
+$globalColor:#FF9933; //全局公用橘色
+$redBall : rgba(255, 69, 69, 0.86); // 小红点的红色
+
+[v-cloak] {
+  display: none;
+}
+
+/*
+<div class="orange-single-btn">
+  <span>保存</span>
+</div>
+*/
+.orange-single-btn {
+  span,a {
+    display: inline-block;
+    width: pr(400);
+    height: pr(90);
+    line-height: pr(90);
+    border-radius: pr(100);
+    text-align: center;
+    color: #fff;
+    @include fz(16px);
+    font-weight: 500;
+    background-image: linear-gradient(347deg, #FF9933, #fc6);
+    box-shadow: 0 pr(11) pr(27) 0 rgba(255,153,50,0.51);
+    &:hover{
+      background-color: #ff9933;
+    }
+  }
+}
+
+.large-btn {
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 500;
+	width: pr(400);
+	height: pr(90);
+	line-height: pr(90);
+	border: none;
+	border-radius: pr(90);
+	display: inline-block;
+	position: relative;
+	@include fz(17px);
+}
+
+.middle-btn {
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 500;
+	width: pr(300);
+	height: pr(90);
+	line-height: pr(90);
+	border: none;
+	border-radius: pr(90);
+	display: inline-block;
+	position: relative;
+	@include fz(17px);
+}
+
+.normal-btn {
+	background-image: linear-gradient(160deg, #ffbd66, #fb682e);
+	box-shadow: 0 pr(33) pr(35) pr(-22) rgba(255, 153, 50, 0.50);
+	&:active {
+		background: #fc6f33;
+	}
+}
+
+/*
+<div class="orange-double-btn">
+  <span class="btn-left">等一下</span>
+  <span class="btn-right">再试一次</span>
+</div>
+*/
+.orange-double-btn {
+  span,a {
+    display: inline-block;
+    height: pr(90);
+    line-height: pr(90);
+    border-radius: pr(100);
+    text-align: center;
+    @include fz(16px);
+    font-weight: 500;
+  }
+  .btn-left {
+    border: 1px solid #cacaca;
+    width: pr(200);
+    color: #777;
+    margin: 0 pr(30) 0 0;
+  }
+  .btn-right {
+    background-image: linear-gradient(to left, #ff9933, #ffcc66);
+    width: pr(300);
+    color: #fff;
+  }
+}

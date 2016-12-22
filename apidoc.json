@@ -1,0 +1,9 @@
+{
+  "name": "base_plan_src",
+  "version": "2.0.0",
+  "description": "",
+  "apidoc": {
+    "title": "panda_group api doc",
+    "url" : "https://api.github.com/v2"
+  }
+}

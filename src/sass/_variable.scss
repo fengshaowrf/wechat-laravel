@@ -1,0 +1,435 @@
+@import "_p2r";
+
+$globalColor:#FF9933; //全局公用橘色
+$redBall : rgba(255, 69, 69, 0.86); // 小红点的红色
+
+[v-cloak] {
+  display: none;
+}
+
+/** ---------两行标题的header----------
+<header class="title-header">
+    <p class="little-title" v-text="tip"></p>
+    <h1 class="main-title" v-text="title"></h1>
+</header>
+*/
+.title-header {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: pr(200);
+    /*background: url('../../assets/images/apply/header-bg.svg');
+    background-size: cover;
+    overflow: auto;*/
+}
+.little-title {
+    margin-top: pr(46);
+    opacity: 0.6;
+    @include fz(12);
+}
+.main-title {
+    margin-top: pr(6);
+    font-weight: normal;
+    @include fz(26);
+}
+
+
+/** ----------内容模块section统一title标题----------
+<section class="section-box">
+    <div class="section-title">
+        <span class="order-number">01</span>
+        <h2 class="section-name">计划介绍</h2>
+    </div>
+    <p class="section-content" v-text="plan_intro">
+        xxxxxxxxxxxxxx其他内容
+    </p>
+</section>
+*/
+.section-box {
+    background: #fff;
+    padding-top: pr(25);
+    margin-bottom: pr(55);
+    &:last-of-type {
+        margin: 0;
+    }
+}
+.section-title {
+    margin-left: pr(13);
+    margin-bottom: pr(21);
+    .order-number {
+        color: $globalColor;
+        position: relative;
+        top: pr(-8);
+        left: pr(-5);
+        @include fz(18);
+        &::after {
+            content: "";
+            width: pr(200);
+            height: pr(4);
+            background: $globalColor;
+            position: absolute;
+            bottom: pr(-5);
+            right: pr(-4);
+        }
+    }
+    .section-name {
+        color: #444;
+        font-weight: normal;
+        margin-left: pr(14);
+        display: inline-block;
+        transform: translateY(pr(-4));
+        @include fz(17);
+    }
+}
+.section-content {
+    width: pr(504);
+    margin: auto;
+    color: #777;
+    font-weight: 300;
+    line-height: 1.85em;
+    @include fz(15);
+}
+
+
+/* -----------查看更多------------
+<footer class="read_more read_more_show" @click="switchReadStatus">
+    <a class="go_read" :class="{'on': read_status}" v-text="read_status ? '点击收起' : '查看更多'"></a>
+</footer>
+*/
+.read_more_show {
+    display: block!important;
+}
+.read_more {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0 0 pr(3) pr(3);
+    background: #fff;
+    height: pr(65);
+    .go_read {
+        text-align: center;
+        line-height: pr(65);
+        /*color: #cccccc;*/
+        &:after {
+            /*content: '\e60a';
+            font-family:"panda-mom";
+            color: #cccccc;*/
+            @include fz(14);
+            margin:0 0 0 pr(10);
+            display: inline-block;
+            transition: -webkit-transform .3s ease;
+            transform:rotate(0deg);
+        }
+    }
+    .go_read.on {
+        &:after {
+            transform:rotate(-180deg);
+        }
+    }
+}
+
+
+/** ----------底部左白右橙两个按钮----------
+<footer class="white-orange-btn">
+    <div class="origin-btn white-btn" @click="onButtonClick(0)">
+        <span class="origin-text white-btn">直接购买<i>(￥499)</i></span>
+        <i class="origin-icon"></i>
+    </div>
+    <div class="origin-btn orange-btn" @click="onButtonClick(1)">
+        <span class="origin-text">开三人团<i>(￥399)</i></span>
+        <i class="origin-icon"></i>
+    </div>
+</footer>
+*/
+.white-orange-btn {
+    width: 100%;
+    height: pr(87);
+    background: #fff;
+    text-align: center;
+    padding-top: pr(17)!important;
+    border-top: pr(2) solid #eee;
+    box-shadow: 0 pr(-5) pr(30) rgba(0, 0, 0, .07);
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+}
+.origin-btn {
+    width: pr(276);
+    height: pr(71);
+    line-height: pr(71);
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    border: pr(2) solid $globalColor;
+    border-radius: pr(3);
+    position: relative;
+    top: pr(1);
+    box-shadow: 0 pr(2) pr(15) 0 rgba(147, 147, 147, 0.5);
+    @include fz(14);
+    &::before {
+        /*font-family: "panda-mom";
+        content: "\e600";*/
+        position: absolute;
+        top: pr(20);
+        left: pr(10);
+        z-index: 0;
+        @include fz(70);
+    }
+    span.origin-text, a.origin-text {
+        height: pr(71);
+        display: block;
+        padding: 0 0 0 pr(22);
+        position: relative;
+        z-index: 100;
+    }
+    i:first-child {
+        @include fz(10);
+    }
+    i.origin-icon {
+        &::before {
+            content: "\e602";
+            font-family: "panda-mom";
+            position: absolute;
+            display: inline-block;
+            margin: auto pr(10) auto 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            @include fz(10)
+        }
+    }
+}
+.white-btn {
+    color: $globalColor;
+    box-shadow: 0 0;
+    &::before {
+        color: rgba(150, 150, 150, 0.1);
+    }
+    i.origin-icon {
+        &::before {
+            color: $globalColor;
+        }
+    }
+}
+.orange-btn {
+    color: #fff;
+    background: $globalColor;
+    margin-left: pr(31);
+    &::before {
+        color: rgba(120, 120, 120, 0.1);
+    }
+}
+
+/** ----------底部全屏橙色按钮----------
+
+<section class="widely-orange-box" v-cloak>
+  <div class="widely-orange-btn">
+    <div class="widely-text">推荐好友</div>
+  </div>
+</section> */
+.widely-orange-box {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: pr(90);
+    z-index: 999;
+    box-shadow: 0 pr(-25) pr(30) rgba(0, 0, 0, .1);
+}
+.widely-orange-btn {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: pr(90);
+    z-index: 999;
+    line-height: pr(90);
+    background: #ff9933;
+    overflow: hidden;
+    .widely-text {
+        position: relative;
+        display: block;
+        text-align: center;
+        @include fz(17);
+        color: #fff;
+        font-weight: 400;
+        letter-spacing: 2px;
+        &:before {
+            position: absolute;
+           /* content: '\e601';
+            font-family: 'panda-mom';*/
+            height: pr(95);
+            line-height: pr(90);
+            top: pr(35);
+            left: pr(45);
+            color: rgba(50,50,50,.05);
+            @include fz(90);
+        }
+        &:after {
+            position: absolute;
+            content: '\e604';
+            font-family: 'panda-mom';
+            height: pr(95);
+            line-height: pr(90);
+            top: pr(10);
+            right: pr(10);
+            font-weight: 800;
+            color: rgba(255,255,255,.1);
+            @include fz(120);
+            transform: scale(.7,1);
+        }
+    }
+}
+
+
+/** ----------底部突出单个橙色按钮----------
+<section class="overflow-single-btn">
+    <div class="timecout">
+        <h5>距结束</h5>
+        <p>
+            <b v-text="cut_time[0]"></b>小时
+            <b v-text="cut_time[1]"></b>分
+            <b v-text="cut_time[2]"></b>秒
+        </p>
+    </div>
+    <div class="orange-shadow-btn" @click="switchShowStatus(1)">
+        <span>邀请好友</span>
+    </div>
+</section>
+*/
+.overflow-single-btn {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: pr(96);
+    background: #fff;
+    z-index: 999;
+    box-shadow: 0 pr(-5) pr(30) rgba(0, 0, 0, .07);
+    .timecout {
+        padding: pr(10) 0 0 pr(25);
+        h5, p {
+            @include fz(12);
+            color: #999;
+            font-weight: 400;
+        }
+        p {
+            margin: pr(-5) 0 0 0;
+        }
+        b {
+            @include fz(20);
+            color: #ff9933;
+            font-weight: 400;
+            margin: 0 pr(4) 0 0;
+        }
+    }
+    .orange-shadow-btn {
+        position: absolute;
+        right: pr(25);
+        top: pr(-15);
+    }
+}
+
+
+/*
+<div class="orange-shadow-btn">
+    <span>立即支付</span>
+</div>
+*/
+.orange-shadow-btn {
+    display: inline-block;
+    width: pr(300);
+    height: pr(96);
+    border-radius: pr(3);
+    background: $globalColor;
+    box-shadow: 0 pr(11) pr(24) rgba(0, 0, 0, .1);
+    span,a {
+        position: relative;
+        display: inline-block;
+        top: 0;
+        left: 0;
+        width: pr(330);
+        height: pr(96);
+        line-height: pr(96);
+        color: #fff;
+        padding: 0 0 0 pr(20);
+        @include fz(16);
+        border-radius: pr(3);
+        font-weight: 400;
+        overflow: hidden;
+        z-index: 10;
+        text-align: left;
+        letter-spacing: 2px;
+        &:before {
+            position: absolute;
+            font-family: 'panda-mom';
+            color: rgba(0,0,0,0.05);
+            z-index: -1;
+/*          content: '\e600';
+            bottom: pr(-10);
+            left: pr(-15);
+            @include fz(70);*/
+        }
+        &:after {
+            position: absolute;
+            content: '\e604';
+            font-family: 'panda-mom';
+            height: pr(95);
+            line-height: pr(95);
+            top: 0;
+            font-weight: 800;
+            right: pr(60);
+            color: #fff;
+            @include fz(14);
+        }
+    }
+
+}
+.white-shadow-btn {
+    display: inline-block;
+    width: pr(350);
+    height: pr(95);
+    border-radius: pr(3);
+    background: #fff;
+    box-shadow: 0 pr(11) pr(24) rgba(0, 0, 0, .1);
+    span,a {
+        position: relative;
+        display: inline-block;
+        top: 0;
+        left: 0;
+        width: pr(320);
+        height: pr(95);
+        line-height: pr(95);
+        color: #ff9933;
+        padding: 0 0 0 pr(30);
+        @include fz(16);
+        border: 1px solid #ff9933;
+        border-radius: pr(3);
+        font-weight: bolder;
+        overflow: hidden;
+        z-index: 10;
+        text-align: left;
+        letter-spacing: 2px;
+        &:before {
+            position: absolute;
+            font-family: 'panda-mom';
+            color: rgba(255,255,255,0.1);
+            z-index: -1;
+            /*          content: '\e600';
+                        bottom: pr(-10);
+                        left: pr(-15);
+                        @include fz(70);*/
+        }
+        &:after {
+            position: absolute;
+            content: '\e602';
+            font-family: 'panda-mom';
+            height: pr(95);
+            line-height: pr(90);
+            top: 0;
+            right: pr(25);
+            color: #ff9933;
+            @include fz(20);
+        }
+    }
+
+}

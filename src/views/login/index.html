@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>熊猫书院报到</title>
+    <!-- build:js -->
+   <!-- <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://rap.taobao.org/rap.plugin.js?projectId=2708"></script>-->
+    <!-- endbuild -->
+    <link rel="stylesheet" type="text/css" href="../../css/login/index.css?rev=@@hash"/>
+</head>
+<body>
+<div class="noticeBox">
+    <div class="box">
+        <header class="bgWhite">
+            <h3 v-text="title"></h3>
+            <p v-text="desc"></p>
+        </header>
+        <article class="content">
+            <mobile></mobile>
+            <span id="tips" v-if="codeError" class="on" v-cloak>验证码错误</span>
+        </article>
+        <article class="buttons">
+            <ul>
+                <li class="arrow"
+                    @click="next"
+                    :class="{'noBg': nextType == 0}"><a v-text="nextText"></a></li>
+            </ul>
+        </article>
+    </div>
+</div>
+
+<!--手机号-->
+<script type="vue/template" id="mobileTpl">
+    <section class="input">
+        <label for="custom_phone">手机号码</label>
+        <input type="tel" v-model="mobile" id="custom_phone" maxlength="11" placeholder="手机号" />
+    </section>
+    <section v-if="!special" class="input">
+        <label for="custom_name">验证码</label>
+        <input type="tel" v-model="code" id="custom_name" maxlength="6" placeholder="验证码" />
+        <i id="code"  @click="getCode" v-text="qrcodeText"></i>
+    </section>
+</script>
+<!--手机号结束-->
+
+<script>
+    var $data = <?php echo json_encode($data);?>;
+    console.log($data);
+</script>
+<!-- build:js -->
+<script src="../../mock/login/index.js"></script>
+<!-- endbuild -->
+<script src="../../js/lib/zw.js"></script>
+<script src="../../js/lib/vue.min.js"></script>
+<script src="../../js/login/index.js?rev=@@hash"></script>
+<script>
+    wx.config(<?php echo $js_config; ?>);
+    wx.ready(function () {
+        wx.hideAllNonBaseMenuItem();
+    });
+</script>
+<div style="display: none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257573903&web_id=1257573903" language="JavaScript"></script></div>
+</body>
+</html>

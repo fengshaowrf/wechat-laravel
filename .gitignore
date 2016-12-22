@@ -1,0 +1,12 @@
+.idea
+*.log
+*.DS_Store
+/img/*
+webhook.php
+.inviteimg
+node_modules
+application/const.php
+src/tmp
+src/static/**/*
+public
+src/css
