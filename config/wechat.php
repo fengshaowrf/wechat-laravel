@@ -6,7 +6,7 @@ return [
      *
      * 当值为 false 时，所有的日志都不会记录
      */
-    'debug'  => true,
+    'debug' => true,
 
     /*
      * 使用 Laravel 的缓存系统
@@ -14,12 +14,14 @@ return [
     'use_laravel_cache' => false, // 不使用laravel 缓存
 
     'cache_class' => 'App\Wechat\WechatCache', // 使用自定义缓存类
+
+    'not_union_oauth' => env('NOT_UNION_WECHAT_OAUTH', true), //不通过统一域名授权
     /*
      * 账号基本信息，请从微信公众平台/开放平台获取
      */
-    'app_id'  => env('WECHAT_APPID', 'your-app-id'),         // AppID
-    'secret'  => env('WECHAT_SECRET', 'your-app-secret'),     // AppSecret
-    'token'   => env('WECHAT_TOKEN', 'your-token'),          // Token
+    'app_id' => env('WECHAT_APPID', 'your-app-id'),         // AppID
+    'secret' => env('WECHAT_SECRET', 'your-app-secret'),     // AppSecret
+    'token' => env('WECHAT_TOKEN', 'your-token'),          // Token
     'aes_key' => env('WECHAT_AES_KEY', ''),                    // EncodingAESKey
 
     /*
@@ -31,7 +33,7 @@ return [
      */
     'log' => [
         'level' => env('WECHAT_LOG_LEVEL', 'debug'),
-        'file'  => env('WECHAT_LOG_FILE', storage_path('logs/wechat.log')),
+        'file' => env('WECHAT_LOG_FILE', storage_path('logs/wechat.log')),
     ],
 
     /*

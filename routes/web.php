@@ -23,3 +23,7 @@ Route::get('login', function () {
     );
     return view('login.index',compact('data'));
 });
+
+Route::group(['middleware' => ['web', 'forchange.wxoauth']], function () {
+    Route::get('/userinfo', 'IndexController@userinfo');
+});
