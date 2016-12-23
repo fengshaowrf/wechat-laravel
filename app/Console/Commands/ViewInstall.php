@@ -45,6 +45,10 @@ class ViewInstall extends Command
 
         if ($this->option('update')) {
             //只更新
+            if (!$this->files->exists('view-src')) {
+                $this->error('view-src not exists,please install first');
+                return;
+            }
             $this->gitPull();
             $this->build();
             $this->linkPublic();
@@ -66,7 +70,7 @@ class ViewInstall extends Command
             $rs = $this->choice('view-src exists , want to overwrite?', ['overwrite', 'use exists src'], '1');
             if ($rs == 'use exists src') return;
             elseif ($rs == 'overwrite') {
-                if (!$this->files->deleteDirectory(storage_path('../view-src'))) $this->comment('delete view-src failed,please try again');
+                if (!$this->files->deleteDirectory(base_path('view-src'))) $this->comment('delete view-src failed,please try again');
                 $this->comment('view-src deleted');
             }
         }
@@ -98,7 +102,7 @@ class ViewInstall extends Command
             if (file_exists(public_path($dir))) {
                 $this->files->delete(public_path($dir));
             }
-            $this->files->link(storage_path("../view-src/{$dir}"), public_path($dir));
+            $this->laravel->make('files')->link(base_path('view-src/public/' . $dir), public_path($dir));
         }
     }
 
